@@ -1,17 +1,15 @@
-FROM node:18-alpine
-
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install --production
+# Clone the repository
+RUN apt-get update && apt-get install -y git && \
+    git clone https://github.com/tapframe/NuvioStreamsAddon.git .
 
-# Copy the rest of the application source code
-COPY . .
+# Install dependencies
+RUN npm install
 
-# Set environment variables for Hugging Face
+# Hugging Face requires port 7860
 ENV PORT=7860
 EXPOSE 7860
 
-# Command to start your addon
+# Start the server
 CMD ["node", "server.js"]
