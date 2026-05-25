@@ -1,11 +1,17 @@
-# Clone your Hugging Face Space repository locally
-git clone https://dzdozy.co/spaces/YOUR_HF_USERNAME/nuvio-dzdozy
+FROM node:18-alpine
 
-# Copy your addon files (including the new Dockerfile) into that folder
-cp -r /path/to/nuvio-dzdozy/* ./nuvio-dzdozy
+WORKDIR /app
 
-# Commit and push to Hugging Face
-cd nuvio-dzdozy
-git add .
-git commit -m "Deploy Nuvio clone to Hugging Face"
-git push
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install --production
+
+# Copy the rest of the application source code
+COPY . .
+
+# Set environment variables for Hugging Face
+ENV PORT=7860
+EXPOSE 7860
+
+# Command to start your addon
+CMD ["node", "server.js"]
