@@ -1,5 +1,5 @@
 # Get the code
-git clone https://github.com/tapframe/NuvioStreamsAddon.git
+git clone https://github.com/dzdozy01-cloud/nuvio-dzdozy.git
 cd NuvioStreamsAddon
 
 # Install what's needed
