@@ -1,5 +1,4 @@
-# HF Spaces sandbox doesn't allow NET_ADMIN / /dev/net/tun, so we use the
-# :warp image variant which bundles wgcf + wireproxy (userspace WireGuard).
-FROM ghcr.io/enrico9034/omnivix:warp-extended-2.0
-ENV PORT=7860
-EXPOSE 7860
+git clone https://huggingface.co/spaces/dzdozy/nuvio
+cp https://github.com/enrico9034/omnivix-hf/Dockerfile nuvio/
+cd nuvio
+git add . && git commit -m "init" && git push
